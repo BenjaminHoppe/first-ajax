@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const stepThreeToSix = document.getElementById('step3456');
   const stepSeven = document.getElementById('step7');
   const stepEight = document.getElementById('step8');
-
+  const stepNine = document.getElementById('step9');
 
   // --------------------------------------------------
   // STEP 1 & 2
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // STEP 3, 4, 5, 6
   // --------------------------------------------------
    stepThreeToSix.addEventListener('click', function() {
-    const request =  axios.get('http://intro-ajax-api.herokuapp.com/ping')
+    const request = axios.get('http://intro-ajax-api.herokuapp.com/ping')
 
     .then(function(response) {
       console.log(response.data);
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // STEP 7
   // --------------------------------------------------
   stepSeven.addEventListener('click', function() {
-    const request =  axios.get('http://intro-ajax-api.herokuapp.com/count')
+    const request = axios.get('http://intro-ajax-api.herokuapp.com/count')
 
     .then(function(response) {
       const countResponse = document.getElementById('count')
@@ -64,12 +64,26 @@ document.addEventListener("DOMContentLoaded", function() {
   // STEP 8
   // --------------------------------------------------
   stepEight.addEventListener('click', function() {
-    const request =  axios.get('http://intro-ajax-api.herokuapp.com/time')
+    const request = axios.get('http://intro-ajax-api.herokuapp.com/time?timezone=Asia/Kolkata')
 
     .then(function(response) {
       const timeResponse = document.getElementById('time')
       timeResponse.innerText = `The current date/time is: ${response.data}`;
       stepEight.appendChild(timeResponse);
+      console.log(response.data);
+    });
+  });
+  // --------------------------------------------------
+  // STEP 9
+  // --------------------------------------------------
+  stepNine.addEventListener('click', function() {
+    const request = axios.get('http://intro-ajax-api.herokuapp.com/a_car')
+
+    .then(function(response) {
+      const carResponse = document.getElementById('cars');
+      const carList = document.createElement('li');
+      carList.innerHTML = response.data
+      carResponse.appendChild(carList);
       console.log(response.data);
     });
   });
